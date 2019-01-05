@@ -63,14 +63,25 @@
             android:layout_below="@id/top"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-        <carbon.widget.RecyclerView
-                android:id="@+id/recyclerView"
+        <carbon.widget.FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:carbon_headerMinHeight="@dimen/carbon_toolbarHeight"
-                app:carbon_headerParallax="0.5"
-                app:carbon_headerTint="?attr/colorPrimary"
-                app:carbon_overScroll="always"/>
+                android:layout_height="match_parent">
+            <carbon.widget.rx.TextView
+                    android:text="No Result Availble"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/dummy_text"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <carbon.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:carbon_headerMinHeight="@dimen/carbon_toolbarHeight"
+                    app:carbon_headerParallax="0.5"
+                    app:carbon_headerTint="?attr/colorPrimary"
+                    app:carbon_overScroll="always"/>
+        </carbon.widget.FrameLayout>
+
     </android.support.v4.widget.SwipeRefreshLayout>
 </carbon.widget.RelativeLayout>

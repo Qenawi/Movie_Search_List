@@ -5,10 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import io.reactivex.annotations.NonNull;
-import qenawi.panda.movie_search_list.network.Movies_data;
+import qenawi.panda.movie_search_list.MyViewHolder2;
+import qenawi.panda.movie_search_list.R;
+import qenawi.panda.movie_search_list.network.Profile;
+import qenawi.panda.movie_search_list.network.Profile;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -19,29 +22,30 @@ import java.util.List;
  * Created by Ahmed Kamal on 21-11-2017.
  */
 
-public class Searchadapter extends RecyclerView.Adapter<MyViewHolder> {
-    private List<Movies_data> movies;
+public class Image_adapter extends RecyclerView.Adapter<MyViewHolder2> {
+    private List<Profile> movies;
     private Context c;
     private OnSrelection Call_back;
 
-    public Searchadapter(@NonNull List<Movies_data> movies, OnSrelection Call_back) {
+    public Image_adapter(@NonNull List<Profile> movies, OnSrelection Call_back) {
         this.movies = movies;
         this.Call_back = Call_back;
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder2 onCreateViewHolder(ViewGroup parent, int viewType)
+    {
         View view = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.search_result_item, parent, false);
+                .inflate(R.layout.image_item, parent, false);
         c = parent.getContext();
-        return new MyViewHolder(view);
+        return new MyViewHolder2(view);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position)
+    public void onBindViewHolder(MyViewHolder2 holder, int position)
     {
-        Movies_data movie = movies.get(position);
+        Profile movie = movies.get(position);
         OnBind(movie, holder);
 
     }
@@ -50,18 +54,18 @@ public class Searchadapter extends RecyclerView.Adapter<MyViewHolder> {
         return movies.size();
     }
 
-    public void replaceData(List<Movies_data> movies) {
+    public void replaceData(List<Profile> movies) {
         this.movies.clear();
         this.movies.addAll(movies);
         notifyDataSetChanged();
     }
 
-    public void updateData(ArrayList<Movies_data> movies) {
+    public void updateData(ArrayList<Profile> movies) {
         this.movies.addAll(movies);
         notifyDataSetChanged();
     }
 
-    public Movies_data getItem(int position) {
+    public Profile getItem(int position) {
         if (position < 0 || position >= movies.size()) {
             throw new InvalidParameterException("INVALID IDX");
         }
@@ -73,24 +77,18 @@ public class Searchadapter extends RecyclerView.Adapter<MyViewHolder> {
         notifyDataSetChanged();
     }
 
-    private void OnBind(Movies_data data, MyViewHolder viewHolder)
+    private void OnBind(Profile data, MyViewHolder2 viewHolder)
     {
-        viewHolder.MainTextView.setText(data.getName());
-        viewHolder.MainTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Call_back.selection(movies.get(viewHolder.getAdapterPosition()).getId());
-            }
-        });
-/*
+
+
         RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.drawable.dummy_img_jop_order);
-        requestOptions.error(R.drawable.personal_icon);
-        Glide.with(c).setDefaultRequestOptions(requestOptions).load(data.getProfilePath()).into(viewHolder.profileImg);
-*/
+        requestOptions.placeholder(R.drawable.carbon_defaultdrawable);
+        requestOptions.error(R.drawable.carbon_defaultdrawable);
+        Glide.with(c).setDefaultRequestOptions(requestOptions).load(Constants.Movies.getImageBaseUrl("w500")+data.getFilePath()).into(viewHolder.img_view);
+
     }
 
-    public List<Movies_data> getItems() {
+    public List<Profile> getItems() {
         return movies;
     }
 

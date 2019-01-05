@@ -32,6 +32,10 @@ dependencies {
     implementation root.A_PredatorDependancies.network
     implementation root.A_PredatorDependancies.layout
     implementation root.butterKnifeDependacies.butterKnife
+
+    implementation root.glideDependancies.glide
+    annotationProcessor root.glideDependancies.glideAndroidProcessor
+
     annotationProcessor root.butterKnifeDependacies.butterKnifeCompiler
 
 }

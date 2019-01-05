@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<carbon.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                              xmlns:app="http://schemas.android.com/apk/res-auto"
+                              android:layout_width="match_parent"
+                              android:background="@color/carbon_blueGrey_700"
+                              android:orientation="vertical"
+                              android:layout_height="match_parent">
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <carbon.widget.LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <carbon.widget.rx.ImageView
+                    android:id="@+id/main_image"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:layout_margin="@dimen/default_gap"
+                    app:carbon_elevation="@dimen/carbon_elevationFAB"
+                    app:carbon_cornerRadius="10dp"
+                    android:layout_width="250dp" android:layout_height="250dp"
+            />
+            <carbon.widget.rx.TextView
+                    android:id="@+id/details"
+                    android:padding="10dp"
+                    android:background="@color/carbon_white"
+                    android:text="ahmed"
+                    android:textColor="@color/carbon_black"
+                    app:carbon_cornerRadius="7dp"
+                    android:layout_margin="7dp"
+                    app:carbon_elevation="@dimen/carbon_elevationBottomSheet"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <carbon.widget.FrameLayout
+                    android:layout_width="match_parent"
+                     android:layout_height="wrap_content">
+                <carbon.widget.RecyclerView
+                        android:id="@+id/image_rv"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </carbon.widget.FrameLayout>
+        </carbon.widget.LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</carbon.widget.RelativeLayout>
